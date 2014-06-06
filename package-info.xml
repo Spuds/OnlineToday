@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<license><![CDATA[
+/**
+ * Users online today
+ *
+ * @name      Users online today
+ * @copyright Users online today contributors
+ * @license   BSD http://opensource.org/licenses/BSD-3-Clause
+ *
+ * @version 0.1
+ *
+ */
+	]]></license>
+	<id>emanuele:onlinetoday</id>
+	<name>Users online today</name>
+	<version>0.1</version>
+	<type>modification</type>
+	<install for="1.0 - 1.0.99">
+		<require-file name="OnlineToday.class.php" destination="SUBSDIR" />
+		<require-file name="OnlineToday.template.php" destination="THEMEDIR" />
+		<require-file name="OnlineToday.english.php" destination="LANGUAGEDIR" />
+		<hook hook="integrate_action_boardindex_after" file="SUBSDIR/OnlineToday.class.php" function="OnlineToday::get" />
+		<hook hook="integrate_general_mod_settings" file="SUBSDIR/OnlineToday.class.php" function="OnlineToday::settings" />
+	</install>
+	<uninstall for="1.0 - 1.0.99">
+		<remove-file name="SUBSDIR/OnlineToday.class.php" />
+		<remove-file name="THEMEDIR/OnlineToday.template.php" />
+		<remove-file name="LANGUAGEDIR/OnlineToday.english.php" />
+		<hook reverse="true" hook="integrate_action_boardindex_after" file="SUBSDIR/OnlineToday.class.php" function="OnlineToday::get" />
+		<hook reverse="true" hook="integrate_general_mod_settings" file="SUBSDIR/OnlineToday.class.php" function="OnlineToday::settings" />
+	</uninstall>
+</package-info>
