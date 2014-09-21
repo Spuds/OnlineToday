@@ -51,7 +51,7 @@ class OnlineToday
 		else
 		{
 			$txt['onlinetoday_users_active'] = $txt['onlinetoday_users_active_mid'];
-			$this->_show_since = time() - strtotime(date('Y-m-d'));
+			$this->_show_since = strtotime(date('Y-m-d'));
 		}
 
 		$this->_buddies = $user_info['buddies'];
@@ -140,6 +140,7 @@ class OnlineToday
 				$txt['onlinetoday_off'],
 				$txt['onlinetoday_day'],
 				$txt['onlinetoday_week'],
+				$txt['onlinetoday_mid'],
 			)
 		);
 	}

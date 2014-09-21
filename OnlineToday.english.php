@@ -3,6 +3,7 @@ $txt['onlinetoday'] = 'Online today:';
 $txt['onlinetoday_off'] = 'Disabled';
 $txt['onlinetoday_day'] = 'Last 24 hours';
 $txt['onlinetoday_week'] = 'Last week';
+$txt['onlinetoday_mid'] = 'Since midnight';
 
 $txt['onlinetoday_buddies'] = 'Highlight buddies in users online today list:';
 $txt['onlinetoday_users_active_day'] = 'Users active in last 24 hours:';
