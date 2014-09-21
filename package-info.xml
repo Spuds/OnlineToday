@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
-<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+<!DOCTYPE package-info SYSTEM "http://www.elkarte.net/site/package-info">
+<package-info xmlns="http://www.elkarte.net/site/package-info" xmlns:elk="http://www.elkarte.net/">
 	<license><![CDATA[
 /**
  * Users online today
@@ -9,13 +9,13 @@
  * @copyright Users online today contributors
  * @license   BSD http://opensource.org/licenses/BSD-3-Clause
  *
- * @version 0.1
+ * @version 0.1.1
  *
  */
 	]]></license>
 	<id>emanuele:onlinetoday</id>
 	<name>Users online today</name>
-	<version>0.1</version>
+	<version>0.1.1</version>
 	<type>modification</type>
 	<install for="1.0 - 1.0.99">
 		<require-file name="OnlineToday.class.php" destination="SUBSDIR" />
