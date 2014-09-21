@@ -21,14 +21,14 @@
 		<require-file name="OnlineToday.class.php" destination="SUBSDIR" />
 		<require-file name="OnlineToday.template.php" destination="THEMEDIR" />
 		<require-file name="OnlineToday.english.php" destination="LANGUAGEDIR" />
-		<hook hook="integrate_action_boardindex_after" file="SUBSDIR/OnlineToday.class.php" function="OnlineToday::get" />
-		<hook hook="integrate_general_mod_settings" file="SUBSDIR/OnlineToday.class.php" function="OnlineToday::settings" />
+		<hook hook="integrate_action_boardindex_after" file="SUBSDIR/OnlineToday.class.php" function="Online_Today_Integrate::get" />
+		<hook hook="integrate_general_mod_settings" file="SUBSDIR/OnlineToday.class.php" function="Online_Today_Integrate::settings" />
 	</install>
 	<uninstall for="1.0 - 1.0.99">
 		<remove-file name="SUBSDIR/OnlineToday.class.php" />
 		<remove-file name="THEMEDIR/OnlineToday.template.php" />
 		<remove-file name="LANGUAGEDIR/OnlineToday.english.php" />
-		<hook reverse="true" hook="integrate_action_boardindex_after" file="SUBSDIR/OnlineToday.class.php" function="OnlineToday::get" />
-		<hook reverse="true" hook="integrate_general_mod_settings" file="SUBSDIR/OnlineToday.class.php" function="OnlineToday::settings" />
+		<hook reverse="true" hook="integrate_action_boardindex_after" file="SUBSDIR/OnlineToday.class.php" function="Online_Today_Integrate::get" />
+		<hook reverse="true" hook="integrate_general_mod_settings" file="SUBSDIR/OnlineToday.class.php" function="Online_Today_Integrate::settings" />
 	</uninstall>
 </package-info>
