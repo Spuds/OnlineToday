@@ -16,3 +16,5 @@ $txt['onlinetoday_sort_name_asc'] = 'By name (ascending)';
 $txt['onlinetoday_sort_name_desc'] = 'By name (descending)';
 $txt['onlinetoday_sort_lastseen_asc'] = 'Last seen (ascending)';
 $txt['onlinetoday_sort_lastseen_desc'] = 'Last seen (descending)';
+
+$txt['onlinetoday_sortgroups'] = 'Online today groups sorting order:';

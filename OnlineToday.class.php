@@ -158,6 +158,66 @@ class Online_Today
 		}
 		$db->free_result($query);
 	}
+
+	/**
+	 * This is a pain to do, we should add a the id_group to the array returned
+	 * by cache_getMembergroupList
+	 */
+	public function sortMembergroups($groups, $sorting_order = '')
+	{
+		$key_groups = $this->extractKeys($groups);
+		$sort_array = array_map('trim', explode(',', $sorting_order));
+
+		$groups_tosort = array();
+		$groups_unsorted = array();
+		foreach ($key_groups as $key => $val)
+		{
+			if (in_array($key, $sort_array))
+				$groups_tosort[$key] = $val;
+			else
+				$groups_unsorted[$key] = $val;
+		}
+
+		$groups_sorted = array();
+		foreach ($sort_array as $key)
+		{
+			if (isset($groups_tosort[$key]))
+				$groups_sorted[] = $groups_tosort[$key];
+		}
+
+		return array_merge($groups_sorted, $groups_unsorted);
+	}
+
+	protected function extractKeys($groups)
+	{
+		$key_group = array();
+		$unsorted = array();
+
+		foreach ($groups as $group_link)
+		{
+			$id = $this->extractGroupId($group_link);
+
+			if ($id !== false)
+				$key_group[$id] = $group_link;
+			else
+				$unsorted[] = $group_link;
+		}
+
+		foreach ($unsorted as $val)
+			$key_group[] = $val;
+
+		return $key_group;
+	}
+
+	protected function extractGroupId($link)
+	{
+		preg_match('~;group=(\d+)~', $link, $match);
+
+		if (isset($match[1]))
+			return $match[1];
+		else
+			return false;
+	}
 }
 
 class Online_Today_Integrate
@@ -170,11 +230,7 @@ class Online_Today_Integrate
 		if (empty($modSettings['onlinetoday']))
 			return;
 
-		loadTemplate('OnlineToday');
-		loadLanguage('OnlineToday');
 		$sort = !empty($modSettings['onlinetoday_sort']) ? $modSettings['onlinetoday_sort'] : 0;
-
-		$context['info_center_callbacks'] = elk_array_insert($context['info_center_callbacks'], 'show_users', array('onlinetoday'), 'after', false);
 
 		$instance = new Online_Today($modSettings['onlinetoday'], $sort);
 
@@ -182,11 +238,22 @@ class Online_Today_Integrate
 			$instance->setBuddies($user_info['buddies']);
 
 		$context['onlinetoday'] = $instance->populate();
-		$context['num_onlinetoday'] = count($context['onlinetoday']);
-		$context['num_onlinetoday_buddies'] = $instance->numBuddies();
-		$context['num_users_hidden'] = $instance->numHidden();
 
+		// Well, at least one should always be online... I guess
+		if (!empty($context['onlinetoday']))
+		{
+			loadTemplate('OnlineToday');
+			loadLanguage('OnlineToday');
 
+			$context['info_center_callbacks'] = elk_array_insert($context['info_center_callbacks'], 'show_users', array('onlinetoday'), 'after', false);
+
+			$context['num_onlinetoday'] = count($context['onlinetoday']);
+			$context['num_onlinetoday_buddies'] = $instance->numBuddies();
+			$context['num_users_hidden'] = $instance->numHidden();
+
+			if (!empty($modSettings['onlinetoday_sortgroups']))
+				$context['membergroups'] = $instance->sortMembergroups($context['membergroups'], $modSettings['onlinetoday_sortgroups']);
+		}
 	}
 
 	public static function settings(&$config_vars)
@@ -214,6 +281,10 @@ class Online_Today_Integrate
 				$txt['onlinetoday_sort_lastseen_asc'],
 				$txt['onlinetoday_sort_lastseen_desc'],
 			)
+		);
+		$config_vars[] = array(
+			'text',
+			'onlinetoday_sortgroups',
 		);
 	}
 }

@@ -49,12 +49,14 @@ function template_ic_onlinetoday()
 	echo '
 				</h3>';
 
-	// Assuming there ARE users online... each user in users_online has an id, username, name, group, href, and link.
-	if (!empty($context['onlinetoday']))
-	{
-		echo '
+	echo '
 				<p class="inline">', $txt['onlinetoday_users_active'], ' ', implode(', ', $context['onlinetoday']), '</p>';
-	}
+
+	// Showing membergroups?
+	if (!empty($context['membergroups']))
+		echo '
+			<p class="inline membergroups">[' . implode(',&nbsp;', $context['membergroups']) . ']</p>';
+
 	echo '
 			</li>';
 }
