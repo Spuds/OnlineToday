@@ -102,7 +102,9 @@ class Online_Today
 		$users = array();
 		foreach ($this->_users_list as $user)
 		{
-			$link = '<a ' . (!empty($user['color']) ? 'style="color: ' . $user['color'] . '" ' : '') . 'href="' . $scripturl . '?action=profile;u=' . $user['id_member'] . '">' . $user['real_name'] . '</a>';
+			$title = !empty($user['last_login']) ? 'title="' . standardTime($user['last_login']) . '" ' : '';
+			$color = !empty($user['color']) ? 'style="color: ' . $user['color'] . '" ' : '';
+			$link = '<a ' . $title . $color . 'href="' . $scripturl . '?action=profile;u=' . $user['id_member'] . '">' . $user['real_name'] . '</a>';
 
 			if ($user['is_buddy'])
 				$link = '<strong>' . $link . '</strong>';
@@ -127,7 +129,8 @@ class Online_Today
 		$db = database();
 
 		$query = $db->query('', '
-			SELECT m.id_member, m.real_name, m.show_online, m.id_group, m.additional_groups, m.last_login,
+			SELECT m.id_member, m.real_name, m.show_online, m.id_group,
+				m.additional_groups, m.last_login,
 				mg.online_color as mg_color, pg.online_color as pg_color
 			FROM {db_prefix}members AS m
 				LEFT JOIN {db_prefix}membergroups AS mg ON (m.id_group = mg.id_group)
