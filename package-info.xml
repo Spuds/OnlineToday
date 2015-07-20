@@ -9,13 +9,13 @@
  * @copyright Users online today contributors
  * @license   BSD http://opensource.org/licenses/BSD-3-Clause
  *
- * @version 0.2.1
+ * @version 0.2.2
  *
  */
 	]]></license>
 	<id>emanuele:onlinetoday</id>
 	<name>Users online today</name>
-	<version>0.2.1</version>
+	<version>0.2.2</version>
 	<type>modification</type>
 	<install for="1.0 - 1.0.99">
 		<require-file name="OnlineToday.class.php" destination="SUBSDIR" />

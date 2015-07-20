@@ -7,7 +7,7 @@
  * @copyright Users online today contributors
  * @license   BSD http://opensource.org/licenses/BSD-3-Clause
  *
- * @version 0.2.1
+ * @version 0.2.2
  *
  */
 
