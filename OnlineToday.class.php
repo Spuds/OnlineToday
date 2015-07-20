@@ -249,7 +249,7 @@ class Online_Today_Integrate
 
 			$context['num_onlinetoday'] = count($context['onlinetoday']);
 			$context['num_onlinetoday_buddies'] = $instance->numBuddies();
-			$context['num_users_hidden'] = $instance->numHidden();
+			$context['num_onlinetoday_users_hidden'] = $instance->numHidden();
 
 			if (!empty($modSettings['onlinetoday_sortgroups']))
 				$context['membergroups'] = $instance->sortMembergroups($context['membergroups'], $modSettings['onlinetoday_sortgroups']);

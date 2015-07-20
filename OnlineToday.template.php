@@ -40,8 +40,8 @@ function template_ic_onlinetoday()
 	if ($context['show_buddies'])
 		$bracketList[] = comma_format($context['num_onlinetoday_buddies']) . ' ' . ($context['num_onlinetoday_buddies'] == 1 ? $txt['buddy'] : $txt['buddies']);
 
-	if (!empty($context['num_users_hidden']))
-		$bracketList[] = comma_format($context['num_users_hidden']) . ' ' . ($context['num_spiders'] == 1 ? $txt['hidden'] : $txt['hidden_s']);
+	if (!empty($context['num_onlinetoday_users_hidden']))
+		$bracketList[] = comma_format($context['num_onlinetoday_users_hidden']) . ' ' . ($context['num_spiders'] == 1 ? $txt['hidden'] : $txt['hidden_s']);
 
 	if (!empty($bracketList))
 		echo ' (' . implode(', ', $bracketList) . ')';
