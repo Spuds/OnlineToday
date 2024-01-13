@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<!DOCTYPE package-info SYSTEM "http://www.elkarte.net/site/package-info">
-<package-info xmlns="http://www.elkarte.net/site/package-info" xmlns:elk="http://www.elkarte.net/">
+<!DOCTYPE package-info SYSTEM "https://www.elkarte.net/site/package-info">
+<package-info xmlns="https://www.elkarte.net/site/package-info" xmlns:elk="https://www.elkarte.net/">
 	<license><![CDATA[
 /**
  * Users online today
@@ -17,17 +17,20 @@
 	<name>Users online today</name>
 	<version>0.2.2</version>
 	<type>modification</type>
-	<install for="1.0 - 1.0.99">
+	<install for="1.0 - 1.1.99">
 		<require-file name="OnlineToday.class.php" destination="SUBSDIR" />
 		<require-file name="OnlineToday.template.php" destination="THEMEDIR" />
 		<require-file name="OnlineToday.english.php" destination="LANGUAGEDIR" />
+		<require-file name="OnlineToday.french.php" destination="LANGUAGEDIR" />
 		<hook hook="integrate_action_boardindex_after" file="SUBSDIR/OnlineToday.class.php" function="Online_Today_Integrate::get" />
 		<hook hook="integrate_general_mod_settings" file="SUBSDIR/OnlineToday.class.php" function="Online_Today_Integrate::settings" />
+		<redirect url="?action=admin;area=addonsettings;sa=general" timeout="4000" />
 	</install>
-	<uninstall for="1.0 - 1.0.99">
+	<uninstall for="1.0 - 1.1.99">
 		<remove-file name="SUBSDIR/OnlineToday.class.php" />
 		<remove-file name="THEMEDIR/OnlineToday.template.php" />
 		<remove-file name="LANGUAGEDIR/OnlineToday.english.php" />
+		<remove-file name="LANGUAGEDIR/OnlineToday.french.php" />
 		<hook reverse="true" hook="integrate_action_boardindex_after" file="SUBSDIR/OnlineToday.class.php" function="Online_Today_Integrate::get" />
 		<hook reverse="true" hook="integrate_general_mod_settings" file="SUBSDIR/OnlineToday.class.php" function="Online_Today_Integrate::settings" />
 	</uninstall>
